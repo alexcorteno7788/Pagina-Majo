@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+<head> 
+    <meta charset="UTF-8">
+    <title>Majito</title>
+    <link rel="stylesheet" href="diseno.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+
+
+</head>
+<script>
+    // Espera a que el documento esté listo
+    document.addEventListener("DOMContentLoaded", function() {
+        // Referencias a las secciones
+        const inicio = document.getElementById("inicio");
+        const carta = document.getElementById("carta");
+        const galeria = document.getElementById("galeria");
+        const majo = document.getElementById("majo");
+        // Botón para ir a la sección MAJO
+        const btnMajo = document.getElementById("btnMajo");
+        if (btnMajo) {
+            btnMajo.addEventListener("click", function(e) {
+                e.preventDefault();
+                galeria.style.display = "none";
+                majo.style.display = "block";
+            });
+        }
+
+        // Referencias a los botones
+        const btnCarta = document.getElementById("btnCarta");
+        const btnGaleria = document.getElementById("btnGaleria");
+        const btnNo = document.getElementById("btnNo");
+
+        // Variable para contar botones Si
+        let countBtnSi = 1;
+
+        // Función para eliminar todos los botones flotantes
+        function eliminarBotonesFflotantes() {
+            const botonesFijos = document.querySelectorAll(".btn-si-flotante");
+            botonesFijos.forEach(btn => btn.remove());
+        }
+
+        // Función para crear un botón Si en posición aleatoria
+        function crearBotonSiAleatorio() {
+            const nuevoBtn = document.createElement("button");
+            nuevoBtn.textContent = "Si";
+            nuevoBtn.className = "btn-si-flotante";
+
+            // Posición aleatoria
+            const randomX = Math.random() * (window.innerWidth - 100);
+            const randomY = Math.random() * (window.innerHeight - 100);
+
+            nuevoBtn.style.position = "fixed";
+            nuevoBtn.style.left = randomX + "px";
+            nuevoBtn.style.top = randomY + "px";
+            nuevoBtn.style.zIndex = countBtnSi;
+
+            // Escalado de todos los botones flotantes existentes
+            const botonesFijos = document.querySelectorAll(".btn-si-flotante");
+            const escala = 1 + (countBtnSi * 0.15);
+            botonesFijos.forEach(btn => {
+                btn.style.transform = `scale(${escala})`;
+            });
+            // El nuevo botón también debe tener el mismo tamaño
+            nuevoBtn.style.transform = `scale(${escala})`;
+
+            // Agregar el evento para ir a la carta
+            nuevoBtn.addEventListener("click", function() {
+                eliminarBotonesFflotantes();
+                inicio.style.display = "none";
+                carta.style.display = "block";
+            });
+
+            // Agregar animación de entrada
+            nuevoBtn.style.animation = "fadeInUp 0.4s ease-out";
+
+            // Agregar el botón al documento
+            document.body.appendChild(nuevoBtn);
+            countBtnSi++;
+        }
+
+        // Evento para el botón No - crea nuevo botón Si
+        btnNo.addEventListener("click", function() {
+            crearBotonSiAleatorio();
+            
+            // Si hay muchos botones, hacer el botón No menos visible
+            if (countBtnSi > 10) {
+                btnNo.style.opacity = Math.max(0.2, 1 - (countBtnSi - 10) * 0.1);
+            }
+        });
+
+        // Evento para ir de inicio → carta (botón Si original)
+        btnCarta.addEventListener("click", function() {
+            eliminarBotonesFflotantes();
+            inicio.style.display = "none";
+            carta.style.display = "block";
+        });
+
+        // Evento para ir de carta → galería
+        btnGaleria.addEventListener("click", function() {
+            carta.style.display = "none";
+            galeria.style.display = "block";
+        });
+    });
+</script>
+
+<body>
+    <div class="corazones">
+        <div class="corazon" style="left:10%; animation-delay:0s;">❤️</div>
+        <div class="corazon" style="left:30%; animation-delay:2s;">💖</div>
+        <div class="corazon" style="left:50%; animation-delay:4s;">💕</div>
+        <div class="corazon" style="left:70%; animation-delay:6s;">💞</div>
+        <div class="corazon" style="left:90%; animation-delay:8s;">💓</div>
+    </div>
+
+        
+        <audio id="bg-music" src="The Marias - Cariño [Letra].mp3" autoplay loop hidden></audio>
+    <section id="inicio">
+        <h1>Amorcito linda</h1>
+        <p>Quieres ver algo bonito?</p>
+        <div class="botones-container">
+            <img src="minion.png" alt="Minion" class="minion minion-izq">
+            <div>
+                <button id="btnCarta">Si</button>
+                <button id="btnNo">No</button>
+            </div>
+            <img src="minion.png" alt="Minion" class="minion minion-der">
+        </div>
+    </section>
+
+    <section id="majo" style="display:none;">
+        <h2 class="majo-titulo">MAJITO<span style="font-size:1.2em"></span></h2>
+        <p class="majo-desc">Amor bonito e infinito</p>
+        <div class="majo-letras">
+            <figure class="letra-cancion">
+                <div class="spotify-header">
+                    <img src="1.png" alt="a">
+                    <div>
+                        <div class="spotify-title">Amor, Amor de Mis Amores</div>
+                        <div class="spotify-artist">Natalia Lafourcade, Ximena Sariñana</div>
+                    </div>
+                </div>
+                <div class="spotify-lyrics">Poniendo la mano sobre el corazón<br>Quisiera decirte al compás de un son<br>Que tú eres mi vida que no quiero a nadie más que ti</div>
+                <img class="spotify-logo" src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_Green.png" alt="Spotify logo">
+            </figure>
+            <figure class="letra-cancion">
+                <div class="spotify-header">
+                    <img src="2.png" alt="Canción 2">
+                    <div>
+                        <div class="spotify-title">Cariño</div>
+                        <div class="spotify-artist">The Marias</div>
+                    </div>
+                </div>
+                <div class="spotify-lyrics">Eres una obra de arte<br>Con solo mirarte<br>Algo que da paz</div>
+                <img class="spotify-logo" src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_Green.png" alt="Spotify logo">
+            </figure>
+            <figure class="letra-cancion">
+                <div class="spotify-header">
+                    <img src="3.png" alt="Canción 3">
+                    <div>
+                        <div class="spotify-title">Sunshine & Rain...</div>
+                        <div class="spotify-artist">Kali Uchis</div>
+                    </div>
+                </div>
+                <div class="spotify-lyrics">Through sunshine & rain<br>As seasons change<br>We all need somebody<br>That makes the Earth feel heavenly<br>Baby, I'll be that somebody<br>'Cause you're that someone to me</div>
+                <img class="spotify-logo" src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_Green.png" alt="Spotify logo">
+            </figure>
+            <figure class="letra-cancion">
+                <div class="spotify-header">
+                    <img src="4.png" alt="Canción 4">
+                    <div>
+                        <div class="spotify-title">Best Part</div>
+                        <div class="spotify-artist">Daniel Caesar, H.E.R.</div>
+                    </div>
+                </div>
+                <div class="spotify-lyrics">You're my water when I'm stuck in the desert<br>You're the Tylenol I take when my head hurts<br>You're the sunshine on my life</div>
+                <img class="spotify-logo" src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_Green.png" alt="Spotify logo">
+            </figure>
+            <figure class="letra-cancion">
+                <div class="spotify-header">
+                    <img src="5.png" alt="Canción 5">
+                    <div>
+                        <div class="spotify-title">On Melancholy Hill</div>
+                        <div class="spotify-artist">Gorillaz</div>
+                    </div>
+                </div>
+                <div class="spotify-lyrics">'Cause you are my medicine<br>When you're close to me<br>When you're close to me</div>
+                <img class="spotify-logo" src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_Green.png" alt="Spotify logo">
+            </figure>
+            <figure class="letra-cancion">
+                <div class="spotify-header">
+                    <img src="6.png" alt="Canción 6">
+                    <div>
+                        <div class="spotify-title">Glue Song</div>
+                        <div class="spotify-artist">beabadoobee</div>
+                    </div>
+                </div>
+                <div class="spotify-lyrics">I've never known someone like you, ooh<br>Tangled in love, stuck by you, from the glue<br>Don't forget to kiss me or else you'll have to miss me<br>I guess I'm stuck forever by the glue, oh, and you</div>
+                <img class="spotify-logo" src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_Green.png" alt="Spotify logo">
+            </figure>
+            <figure class="letra-cancion">
+                <div class="spotify-header">
+                    <img src="7.png" alt="Canción 7">
+                    <div>
+                        <div class="spotify-title">My Kind Of Woman</div>
+                        <div class="spotify-artist">Mac DeMarco</div>
+                    </div>
+                </div>
+                <div class="spotify-lyrics">As long as you're next to me<br>Just the two of us<br>You're my, my, my, my kind of woman<br>My, oh my, what a girl</div>
+                <img class="spotify-logo" src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_Green.png" alt="Spotify logo">
+            </figure>
+            <figure class="letra-cancion">
+                <div class="spotify-header">
+                    <img src="8.png" alt="Canción 8">
+                    <div>
+                        <div class="spotify-title">Arrullo De Estrellas</div>
+                        <div class="spotify-artist">Zoé</div>
+                    </div>
+                </div>
+                <div class="spotify-lyrics">Es que no hay nadie como tú<br>Que me haga sentir sentir así<br>En un arrullo de estrellas<br>Te lo digo desde el alma<br>Y con el corazón abierto</div>
+                <img class="spotify-logo" src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_Green.png" alt="Spotify logo">
+            </figure>
+            <figure class="letra-cancion">
+                <div class="spotify-header">
+                    <img src="9.png" alt="Canción 9">
+                    <div>
+                        <div class="spotify-title">Eres Tu</div>
+                        <div class="spotify-artist">Carla Morrison</div>
+                    </div>
+                </div>
+                <div class="spotify-lyrics">Me encanta verte, tenerte, abrazarte<br>Cuando estoy a un lado de ti<br>Todo lo bueno de mí, florece, eres tú<br>Ese imán de una preciosa energía</div>
+                <img class="spotify-logo" src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_Green.png" alt="Spotify logo">
+            </figure>
+        </div>
+
+</section>
+</body>
+</html>
+
+    
+    <section id="carta" style="display:none;">
+        <h2>Feliz Dia del Amor Majito</h2>
+        <p>
+            2do 14 de Febrero juntos, no lo puedo creer, <br>
+            quiero tomarme este espacio para expresarte un poco lo que siento, <br>
+            se que hay dias dificiles, que hay momentos en los que no nos entendemos, <br>
+            se que ha habido tropiezos y malentendidos, pero creo que todo esto nos ha <br>
+            ayudado muchisimo para crecer como personas y juntos como pareja, <br>
+            <br>
+
+            Cada dia me demuestras una vez mas que eres todo lo que siempre he querido,<br>
+            me da muchisimo gusto y me pone tan feliz vivir en una relacion asi,<br>
+            con tanto amor, tan bonita, tan paciente, comprensible, real y fuerte,<br>
+            y lo mejor de todo es que vivo todo esto contigo y creo que no me pudo <br>
+            haber tocado con una mejor persona que tu, eres literalmente la persona<br>
+            que estaba destinada para ser el amor de mi vida, siempre me siento tan<br>
+            afortunado de estar contigo, y siempre asegurate que no te cambiaria por <br>
+            nada en el mundo, porque contigo tengo todo lo que quiero, contigo todo<br>
+            es bonito.<br>
+            <br>
+
+            Valoro muchisimo cada recuerdo y cada momento que hemos pasado junto <br>
+            buenos o malos, nuestra relacion se ha vuelto tan fuerte, me encanta<br>
+            vivirla.<br>
+            <br>
+
+            Jamas en la vida me olvidare de ti y siempre tendras un lugar en mi corazon,<br>
+            espero que lo nuestro dure mucho tiempo mas y podamos seguir siendo felices<br>
+            y crecer juntos. Me encantaria verte crecer y que me acompanes a mi en mi vida.<br>
+            <br>
+
+            Te Amo Majito<br>
+            Nunca lo dudes<br>
+        </p>
+        <p>
+            TE AMOOOOOO INFINITAMENTEEEE
+        </p>
+        <button id="btnGaleria">Sorpresa jeje</button>
+    </section>
+
+    <section id="galeria" style="display:none;">
+        <div class="galeria-header">
+            <h2>Tu y Yo <span style="font-size:1.2em"></span></h2>
+            <img src="cute.png" alt="dibujito" class="dibujito">
+        </div>
+        
+        <div class="fotos-grid">
+            <figure class="foto-momento">
+                <a href="1.jpeg" data-lightbox="galeria" data-title="Nuestro primer viaje juntos 💕">
+                    <img src="1.jpeg" alt="Nuestro primer viaje juntos">
+                </a>
+                <figcaption>Cada</figcaption>
+            </figure>
+            
+            <figure class="foto-momento">
+                <a href="2.jpeg" data-lightbox="galeria" data-title="El día que me hiciste sonreír más que nunca 😊">
+                    <img src="2.jpeg" alt="Día especial">
+                </a>
+                <figcaption>Momento</figcaption>
+            </figure>
+            
+            <figure class="foto-momento">
+                <a href="3.jpeg" data-lightbox="galeria" data-title="Un momento inolvidable juntos">
+                    <img src="3.jpeg" alt="Momento inolvidable">
+                </a>
+                <figcaption>Contigo</figcaption>
+            </figure>
+            
+            <figure class="foto-momento">
+                <a href="4.jpeg" data-lightbox="galeria" data-title="Nuestro primer viaje juntos 💕">
+                    <img src="4.jpeg" alt="Nuestro primer viaje juntos">
+                </a>
+                <figcaption>Es</figcaption>
+            </figure>
+            
+            <figure class="foto-momento">
+                <a href="5.jpeg" data-lightbox="galeria" data-title="Nuestro primer viaje juntos 💕">
+                    <img src="5.jpeg" alt="Nuestro primer viaje juntos">
+                </a>
+                <figcaption>Lo</figcaption>
+            </figure>
+            
+            <figure class="foto-momento">
+                <a href="6.jpeg" data-lightbox="galeria" data-title="Nuestro primer viaje juntos 💕">
+                    <img src="6.jpeg" alt="Nuestro primer viaje juntos">
+                </a>
+                <figcaption>Mas</figcaption>
+            </figure>
+            
+            <figure class="foto-momento">
+                <a href="7.jpeg" data-lightbox="galeria" data-title="Nuestro primer viaje juntos 💕">
+                    <img src="7.jpeg" alt="Nuestro primer viaje juntos">
+                </a>
+                <figcaption>Bonito</figcaption>
+            </figure>
+            
+            <figure class="foto-momento">
+                <a href="8.jpeg" data-lightbox="galeria" data-title="Nuestro primer viaje juntos 💕">
+                    <img src="8.jpeg" alt="Nuestro primer viaje juntos">
+                </a>
+                <figcaption>Que</figcaption>
+            </figure>
+            
+            <figure class="foto-momento">
+                <a href="9.jpeg" data-lightbox="galeria" data-title="Nuestro primer viaje juntos 💕">
+                    <img src="9.jpeg" alt="Nuestro primer viaje juntos">
+                </a>
+                <figcaption>He</figcaption>
+            </figure>
+            
+            <figure class="foto-momento">
+                <a href="10.jpeg" data-lightbox="galeria" data-title="Nuestro primer viaje juntos 💕">
+                    <img src="10.jpeg" alt="Nuestro primer viaje juntos">
+                </a>
+                <figcaption>Vivido</figcaption>
+            </figure>
+            
+            <figure class="foto-momento foto-final">
+                <a href="11.jpeg" data-lightbox="galeria" data-title="Nuestro primer viaje juntos 💕">
+                    <img src="11.jpeg" alt="Nuestro primer viaje juntos">
+                </a>
+                <figcaption>Eres el Amor de mi Vida</figcaption>
+            </figure>
+        </div>
+        
+        <div class="mas-de-ti-container">
+            <button id="btnMajo" class="mas-de-ti-link">Más de ti </button>
+        </div>
+    </section>
+
+</body>
+</html>
