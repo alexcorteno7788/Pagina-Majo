@@ -35,6 +35,7 @@
                     e.preventDefault();
                     galeria.style.display = "none";
                     majo.style.display = "block";
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                 });
             }
 
@@ -82,6 +83,7 @@
                     eliminarBotonesFflotantes();
                     inicio.style.display = "none";
                     carta.style.display = "block";
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                 });
 
                 // Agregar animación de entrada
@@ -109,12 +111,14 @@
                 eliminarBotonesFflotantes();
                 inicio.style.display = "none";
                 carta.style.display = "block";
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
 
             // Evento para ir de carta → galería
             btnGaleria.addEventListener("click", function() {
                 carta.style.display = "none";
                 galeria.style.display = "block";
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         });
     </script>
