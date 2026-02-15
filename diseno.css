@@ -556,3 +556,119 @@ button:active {
         opacity: 0;
     }
 }
+
+/* Estilos responsive para móviles - INICIO */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+
+    /* Sección de inicio */
+    #inicio {
+        padding: 20px 10px;
+    }
+
+    #inicio h1 {
+        font-size: 2em;
+        margin-bottom: 15px;
+        letter-spacing: 2px;
+    }
+
+    #inicio p {
+        font-size: 1.3em;
+        margin-bottom: 20px;
+    }
+
+    /* Botones más grandes y táctiles */
+    #inicio button {
+        font-size: 1.2em;
+        padding: 15px 35px;
+        min-width: 120px;
+    }
+
+    /* Minions más grandes en móviles */
+    .minion {
+        width: 120px;
+        height: 120px;
+    }
+
+    /* Ajustar el contenedor de botones */
+    .botones-container {
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    /* Carta más legible */
+    #carta {
+        padding: 25px 20px;
+        margin: 20px auto;
+        font-size: 1em;
+    }
+
+    #carta h2 {
+        font-size: 1.8em;
+    }
+
+    #carta p {
+        font-size: 1em;
+        line-height: 1.7;
+    }
+
+    /* Botón de galería */
+    #btnGaleria {
+        font-size: 1.2em;
+        padding: 15px 30px;
+    }
+}
+
+/* Estilos para móviles muy pequeños */
+@media (max-width: 480px) {
+    #inicio h1 {
+        font-size: 1.8em;
+        letter-spacing: 1px;
+    }
+
+    #inicio p {
+        font-size: 1.2em;
+    }
+
+    /* Botones aún más grandes y espaciados */
+    #inicio button {
+        font-size: 1.3em;
+        padding: 18px 40px;
+        margin: 10px 5px;
+    }
+
+    .btn-si-flotante {
+        font-size: 1.3em;
+        padding: 18px 40px;
+    }
+
+    /* Minions ajustados para pantallas pequeñas */
+    .minion {
+        width: 100px;
+        height: 100px;
+    }
+
+    .botones-container {
+        gap: 10px;
+    }
+
+    /* Carta ajustada */
+    #carta {
+        padding: 20px 15px;
+        font-size: 0.95em;
+    }
+
+    #carta h2 {
+        font-size: 1.6em;
+    }
+
+    #carta br {
+        display: none;
+    }
+
+    #carta p {
+        text-align: left;
+    }
+}
